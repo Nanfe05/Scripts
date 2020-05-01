@@ -97,7 +97,7 @@ function OrganizeData() {
             current4Digits = tempCurrent4Digits;
             current4DigitsRow = currentRowOrganizedSheet;
             organizedSheet.getRange(current4DigitsRow,organizedColumn.fourD.col).setValue(current4Digits).setHorizontalAlignment("center").setFontWeight('bold');
-            organizedSheet.getRange(current4DigitsRow, organizedColumn.fourD.col,1,organizedColumn.saldo.col).setBorder(true, true, true, true, false, false);
+            organizedSheet.getRange(current4DigitsRow, organizedColumn.fourD.col,1,organizedColumn.saldo.col).setBorder(true, true, true, true, false, false).setBackground('#C7E1B5');
             currentRowOrganizedSheet += 2;
           }
           
@@ -138,11 +138,24 @@ function OrganizeData() {
             organizedSheet.getRange(current4DigitsRow,organizedColumn.saldo.col).setValue(debito4Digits-credito4Digits).setHorizontalAlignment("center").setFontWeight('bold').setNumberFormat("#,###;(#,###); - ");
             debito4Digits=0;
             credito4Digits=0;
+            
+             // Dejar Valores almacenados en company
+               if(currentCompany == tempCurrentCompany  && debitoCurrentCompany != 0 || creditoCurrentCompany != 0){
+               organizedSheet.getRange(currentRowOrganizedSheet,organizedColumn.date.col,1,6).merge().setHorizontalAlignment('left').setFontWeight('bold').setValue(totalTercero);
+               organizedSheet.getRange(currentRowOrganizedSheet,organizedColumn.debito.col).setValue(debitoCurrentCompany).setHorizontalAlignment("center").setFontWeight('bold').setNumberFormat("#,###;(#,###); - ");
+               organizedSheet.getRange(currentRowOrganizedSheet,organizedColumn.credito.col).setValue(creditoCurrentCompany).setHorizontalAlignment("center").setFontWeight('bold').setNumberFormat("#,###;(#,###); - ");
+               organizedSheet.getRange(currentRowOrganizedSheet,organizedColumn.saldo.col).setValue(debitoCurrentCompany-creditoCurrentCompany).setHorizontalAlignment("center").setFontWeight('bold').setNumberFormat("#,###;(#,###); - ");
+               debitoCurrentCompany = 0;
+               creditoCurrentCompany = 0;
+               currentCompany = tempCurrentCompany;
+               currentRowOrganizedSheet += 2;
+               }
+             
             // Set new name
             current4DigitsRow = currentRowOrganizedSheet;
             current4Digits = tempCurrent4Digits;
             organizedSheet.getRange(current4DigitsRow,organizedColumn.fourD.col).setValue(current4Digits).setHorizontalAlignment("center").setFontWeight('bold');
-            organizedSheet.getRange(current4DigitsRow, organizedColumn.fourD.col,1,organizedColumn.saldo.col).setBorder(true, true, true, true, false, false);
+            organizedSheet.getRange(current4DigitsRow, organizedColumn.fourD.col,1,organizedColumn.saldo.col).setBorder(true, true, true, true, false, false).setBackground('#C7E1B5');
             currentRowOrganizedSheet += 2;
           }
           
@@ -153,6 +166,19 @@ function OrganizeData() {
                organizedSheet.getRange(current6DigitsRow,organizedColumn.saldo.col).setValue(debito6Digits-credito6Digits).setHorizontalAlignment("center").setFontWeight('bold').setNumberFormat("#,###;(#,###); - ");
                debito6Digits=0;
                credito6Digits=0;
+               
+               // Dejar Valores almacenados en company
+               if(currentCompany == tempCurrentCompany && debitoCurrentCompany != 0 || creditoCurrentCompany != 0 ){
+               organizedSheet.getRange(currentRowOrganizedSheet,organizedColumn.date.col,1,6).merge().setHorizontalAlignment('left').setFontWeight('bold').setValue(totalTercero);
+               organizedSheet.getRange(currentRowOrganizedSheet,organizedColumn.debito.col).setValue(debitoCurrentCompany).setHorizontalAlignment("center").setFontWeight('bold').setNumberFormat("#,###;(#,###); - ");
+               organizedSheet.getRange(currentRowOrganizedSheet,organizedColumn.credito.col).setValue(creditoCurrentCompany).setHorizontalAlignment("center").setFontWeight('bold').setNumberFormat("#,###;(#,###); - ");
+               organizedSheet.getRange(currentRowOrganizedSheet,organizedColumn.saldo.col).setValue(debitoCurrentCompany-creditoCurrentCompany).setHorizontalAlignment("center").setFontWeight('bold').setNumberFormat("#,###;(#,###); - ");
+               debitoCurrentCompany = 0;
+               creditoCurrentCompany = 0;
+               currentCompany = tempCurrentCompany;
+               currentRowOrganizedSheet += 2;
+               }
+               
                // Set new name
                current6DigitsRow = currentRowOrganizedSheet;
                current6Digits = tempCurrent6Digits;
